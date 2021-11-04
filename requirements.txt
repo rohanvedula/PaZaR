@@ -1,0 +1,5 @@
+colorzero==2.0
+gpiozero==1.6.2
+ordered-set==4.0.2
+picamera==1.13
+PyLaTeX==1.4.1
