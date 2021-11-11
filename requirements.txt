@@ -3,3 +3,6 @@ gpiozero==1.6.2
 ordered-set==4.0.2
 picamera==1.13
 PyLaTeX==1.4.1
+Pillow
+numpy
+tensorflow-cpu >= 2.7
