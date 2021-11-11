@@ -1,0 +1,7 @@
+Because we previously determined that the quadratic formula has no real solutions, the denominator of the
+first term can never be zero, so the derivative is defined everywhere.
+Evaluate the endpoints and critical points:
+g(0) = In (8) = 2.08
+g(6) = In (36 — 30 + 8) = In (14) ~ 2.64
+g(2.5) = In (1.75) ~ 0.56
+We conclude that g(6) 2.64 is the global maximum and 9(2.5) = 0.56 Is the global minimum.
