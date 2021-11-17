@@ -1,20 +1,3 @@
-"""
-import pytesseract
-from pytesseract import pytesseract as pt
-import shutil
-import os
-import random
-try:
- from PIL import Image
-except ImportError:
- import Image
-
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
-print(pytesseract.image_to_string(r'D:\examplepdf2image.png'))
-
-"""
-
-
 import cv2
 import pytesseract
 from pytesseract import Output
@@ -22,6 +5,9 @@ import csv
 
 
 image = cv2.imread('images/test9.png')
+dimensions = image.shape
+
+print(dimensions)
 
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -39,17 +25,22 @@ details = pytesseract.image_to_data(threshold_img, output_type=Output.DICT, conf
 print(details.keys())
 
 total_boxes = len(details['text'])
+special_characters = "!@#$%^&*()-+?_=,<>/"
 
-
+#int(details['conf'][sequence_number]) >40 and 
 
 for sequence_number in range(total_boxes):
 
-    if int(details['conf'][sequence_number]) >40 and details['text'][sequence_number].isnumeric()==False:
+    if details['text'][sequence_number].isalnum()==False:
         (x, y, w, h) = (details['left'][sequence_number], details['top'][sequence_number], details['width'][sequence_number],  details['height'][sequence_number])
-        threshold_img = cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
-
-    else:
-        print("")
+        area = (w*h)/(dimensions[0]*dimensions[1])
+        add = int((dimensions[0]*dimensions[1])*0.0001)
+        #or any(c in special_characters for c in details['text'][sequence_number])
+        if(area<0.0017):
+            crop = image[y:y+h, x:x+w]
+            cv2.imshow('Image', crop) #shows the image can be removed and API call can be placed here or we can make an array and call the symbol recognizer API like that
+            cv2.waitKey(0) 
+            threshold_img = cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
 
 parse_text = []
 word_list = []
