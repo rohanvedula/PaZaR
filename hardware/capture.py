@@ -1,7 +1,9 @@
 #importing required libraries for the camera and gpio pins
+from cloudinary.uploader import upload
 from picamera import PiCamera
 from time import sleep
 from gpiozero import Button, LED
+from upload import upload_image
 
 #create variables for all interfaces (button, camera, LEDs)
 button = Button(2)
@@ -36,3 +38,5 @@ camera.capture("/home/pi/projects/SE101/images/image1.jpg")
 
 #stop camera preview
 camera.stop_preview()
+
+upload_image("/home/pi/projects/SE101/images/image1.jpg")
