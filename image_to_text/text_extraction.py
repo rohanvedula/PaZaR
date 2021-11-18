@@ -2,7 +2,7 @@ import cv2
 import pytesseract
 from pytesseract import Output
 import csv
-
+import symbol_recognition.identify as symbol_classifier
 
 image = cv2.imread('images/test9.png')
 dimensions = image.shape
@@ -38,6 +38,10 @@ for sequence_number in range(total_boxes):
         #or any(c in special_characters for c in details['text'][sequence_number])
         if(area<0.0017):
             crop = image[y:y+h, x:x+w]
+            processed_img, result = symbol_classifier.identify(crop, 5)
+            print("\nMost likely symbols:")
+            for certainty, name in result:
+                print("[%.5f] %s" % (certainty, name))
             cv2.imshow('Image', crop) #shows the image can be removed and API call can be placed here or we can make an array and call the symbol recognizer API like that
             cv2.waitKey(0) 
             threshold_img = cv2.rectangle(image, (x, y), (x + w, y + h), (0, 0, 255), 2)
