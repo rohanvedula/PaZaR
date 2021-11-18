@@ -1,4 +1,3 @@
-
 from pylatex.base_classes.command import Command
 from pylatex.document import Document
 from pylatex.utils import NoEscape
