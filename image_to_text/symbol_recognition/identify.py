@@ -1,13 +1,14 @@
 import numpy as np 
 from tensorflow import keras
 from PIL import Image 
+import os 
 
 # Build the lookup table of symbols 
-relative_path = "symbol_recognition/"
+relative_path = os.path.join(os.path.dirname(__file__), "labels.txt")
 
 labels_id = {}
 rev_label_lookup = {}
-with open("%s/labels.txt" % relative_path, "r") as file:
+with open(relative_path, "r") as file:
     for line in file:
         name, index = line.split()
         index = int(index)
@@ -15,7 +16,7 @@ with open("%s/labels.txt" % relative_path, "r") as file:
         rev_label_lookup[index] = name 
 
 # Load model 
-model = keras.models.load_model("%s/model" % relative_path)
+model = keras.models.load_model(os.path.join(os.path.dirname(__file__), "model.h5"))
 
 # Utility function to add a white border around a given picture
 def add_margin(img, top, right, bottom, left):
