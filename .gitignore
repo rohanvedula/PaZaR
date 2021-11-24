@@ -1,2 +1,7 @@
 /env
 .env
+hardware/__pycache__/text_to_latex.cpython-39.pyc
+api/handlers/__pycache__/to_latex_code.cpython-39.pyc
+api/handlers/__pycache__/text_extraction.cpython-39.pyc
+api/handlers/__pycache__/UploadImageHandler.cpython-39.pyc
+/ubuntu_env

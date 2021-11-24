@@ -12,7 +12,7 @@ def upload_image(path):
     return response["url"]
 
 def send_uploaded(url):
-    response = requests.post("http://localhost:5000/upload", data={"image_url" : url})
+    response = requests.post("https://pazarapp.herokuapp.com/upload", data={"image_url" : url})
     return response.json()['text']
 
 latex_code = send_uploaded(upload_image(os.path.join(os.path.dirname(__file__), 'sample_images', 'test9.png')))
